@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const text = "a 10th Grader";
+    const text = "a 10th Grader Here!";
     const typingText = document.getElementById("typing-text");
     let index = 0;
 

@@ -48,6 +48,7 @@ body {
     text-transform: uppercase;
     position: relative;
     transition: color 0.3s ease-in-out;
+    padding: 0.5rem 1rem;
 }
 
 .nav-link:hover {
@@ -69,6 +70,40 @@ body {
 .nav-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+}
+
+/* ===========================
+   Dropdown Menu
+   =========================== */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(76, 158, 138, 0.7);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* ===========================
