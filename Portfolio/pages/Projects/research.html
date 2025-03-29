@@ -6,35 +6,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Published Research Paper</title>
     <link rel="stylesheet" href="../../styles.css">
-    <script src="../../script.js"></script>
+    <script src="../../script.js" defer></script>
+    <style>
+        body {
+            padding: 2rem;
+        }
+
+        /* Centered header with spacing */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Alternating section styles */
+        section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.12);
+        }
+
+        /* Alternating background for contrast */
+        section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* PDF Viewer */
+        .pdf-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Smooth Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/projects.html" class="nav-link">Projects</a>
-        <a href="pages/acheivements.html" class="nav-link">Achievements</a>
+        <a href="../projects.html" class="nav-link">Projects</a>
+        <a href="../achievements.html" class="nav-link">Achievements</a>
     </nav>
-    <header>
+
+    <header style="margin-top: 15vh;">
         <h1>Exploring the Viability of Human Settlement on Mars</h1>
     </header>
+
     <section>
-        <h2>What inspired me to explore this topic?</h2>
-        <p>The idea of humanity becoming a multi-planetary species has always fascinated me...</p>
+        <h2>What sparked my curiosity about this topic?</h2>
+        <p>The dream of humanity expanding beyond Earth has always been a driving force in scientific exploration. The
+            idea of building a civilization on Mars—overcoming its harsh environment and turning it into a livable
+            world—feels like the ultimate test of human ingenuity and resilience. This research allowed me to explore
+            the intersection of space science, engineering, and the fundamental question: Can we truly call another
+            planet home?</p>
     </section>
+
     <section>
-        <h2>Why does this topic matter to me?</h2>
-        <p>I love tackling complex problems, and there's no bigger challenge than transforming a barren planet...</p>
-    </section>
-    <section>
-        <h2>Key challenges addressed</h2>
-        <p>Mars is hostile to human life, with extreme temperatures, high radiation, and an unbreathable atmosphere...
+        <h2>Why does this research matter to me?</h2>
+        <p>I've always been drawn to challenges that push the boundaries of what's possible. The idea of transforming an
+            inhospitable planet into a thriving ecosystem isn't just a scientific puzzle—it's a bold vision for the
+            future of our species. With climate change, resource depletion, and population growth affecting Earth,
+            finding alternative habitats is no longer just an ambitious dream, but a necessity for long-term survival.
         </p>
     </section>
+
+    <section>
+        <h2>Key challenges addressed</h2>
+        <p>Mars presents some of the most extreme survival challenges known to humankind. From freezing temperatures and
+            lethal radiation to a thin, unbreathable atmosphere, every aspect of survival needs a carefully engineered
+            solution. This research explores:
+
+            The potential of self-sustaining habitats using in-situ resource utilization (ISRU)
+            The role of nuclear and solar energy in powering Martian settlements
+            The impact of low gravity and cosmic radiation on human health and potential countermeasures
+            The feasibility of terraforming Mars to create an Earth-like environment over centuries
+        </p>
+    </section>
+
     <section>
         <h2>Future evolution of this research</h2>
-        <p>As technology advances, concepts like 3D-printed habitats, artificial magnetospheres...</p>
+        <p>As technology advances, ideas once thought impossible are becoming tangible realities. 3D-printed habitats
+            made from Martian regolith, bioregenerative life support systems, and even artificial magnetospheres to
+            shield against radiation are among the many innovations shaping the future of Mars colonization. The coming
+            decades will determine whether humanity takes its first true steps toward becoming an interplanetary
+            species.</p>
     </section>
+
+    <section class="pdf-container">
+        <iframe src="../../research-paper.pdf"></iframe>
+    </section>
+    <p style="text-align: center; margin-top: 1rem;">
+        <a href="https://www.ijfmr.com/research-paper.php?id=37426" target="_blank"
+            style="color: #fff; text-decoration: underline; font-weight: bold;">
+            Click here to view the published research paper
+        </a>
+    </p>
+
+
     <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
 </body>
 
