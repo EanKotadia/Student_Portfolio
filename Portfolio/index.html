@@ -4,11 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Professional Achievements</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Archive&family=Bodoni+Flf:wght@400;700&family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js"></script>
+    <style>
+        .achievements-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .donut-chart {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #E5E7EB;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .donut-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0.7;
+        }
+
+        .donut-segment:nth-child(1) {
+            background-color: #2e3745;
+            transform: rotate(45deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(2) {
+            background-color: #292f37;
+            transform: rotate(135deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(3) {
+            background-color: #565c68;
+            transform: rotate(225deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(4) {
+            background-color: #727a88;
+            transform: rotate(315deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 400px;
+            position: relative;
+        }
+
+        .details-panel {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid #E5E7EB;
+            top: 0;
+            left: 0;
+            transform: scale(0.9);
+        }
+
+        .details-panel.active {
+            opacity: 1;
+            z-index: 10;
+            transform: scale(1);
+        }
+
+        .details-panel h2 {
+            color: #111827;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .details-panel p {
+            color: #4B5563;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            opacity: 1;
+        }
+
+        .donut-segment.expanded {
+            transform: scale(1.1) rotate(0deg);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Additional styling for better layout */
+        .details-container {
+            position: relative;
+            max-width: 400px;
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,99 +130,7 @@
         <a href="pages/projects.html" class="nav-link">Projects</a>
         <a href="pages/acheivements.html" class="nav-link">Achievements</a>
     </nav>
-
-    <section class="page-section container">
-        <h1 class="hero-title">Hi, I'm <span id="typing-text"></span></h1>
-        <p>Passionate about web design, UI/UX, research, debating, business, and creating solutions.</p>
-    </section>
-
-
-    <section id="contact" class="page-section container">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out for collaboration, opportunities, or just a chat!</p>
-        <div class="contact-links">
-            <a href="mailto:kotadia.ean@gmail.com" class="contact-link">
-                <img src="images/9.png" alt="Email"> Email Me
-            </a>
-            <a href="https://www.linkedin.com/in/ean-kotadia-7a2b0821a/" class="contact-link">
-                <img src="images/7.png" alt="LinkedIn"> LinkedIn
-            </a>
-            <a href="https://github.com/EanKotadia" class="contact-link">
-                <img src="images/1.png" alt="GitHub"> GitHub
-            </a>
-            <a href="https://instagram.com/yourprofile" class="contact-link">
-                <img src="images/11.jpeg" alt="Instagram"> Instagram
-            </a>
-            <a href="https://behance.net/yourprofile" class="contact-link">
-                <img src="images/10.png" alt="Behance"> Behance
-            </a>
-        </div>
-    </section>
-
-
-    <section class="page-section container">
-        <h2>My Interests</h2>
-        <div class="scrolling-list">
-            <div class="scrolling-text">
-                <div class="scrolling-item">
-
-                    <img src="images/13.png" alt="React"> React |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/3.png" alt="HTML"> HTML |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="/images/12.png" alt="CSS"> CSS |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/4.png" alt="JavaScript"> JavaScript |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/5.png" alt="Math"> Math |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/8.png" alt="Graphic Design"> Graphic Design |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/6.png" alt="Manim"> Manim |
-                </div>
-                <div class="scrolling-item">
-
-                    <img src="images/2.png" alt="UI/UX"> UI/UX |
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="page-section container">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Featured Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <h3>Newsify</h3>
-                <p>A verified news platform with AI-based fact-checking.</p>
-                <a href="/pages/Projects/newsify.html">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Published Research Paper</h3>
-                <p>Exploring the viability of human settlement on Mars.</p>
-                <a href="pages/Projects/research.html">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Young Poets Society</h3>
-                <p>A creative community for budding poets.</p>
-                <a href="pages/Projects/poetry.html">View Project</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="page-section container">
-        <h2>Achievements</h2>
+    <section>
         <div class="scrolling-list">
             <div class="scrolling-text">
                 <div class="scrolling-item">
@@ -119,56 +140,97 @@
                 </div>
                 <div class="scrolling-item">
                     <img src="achievements/2.png" alt="WSC 4th Best Team Jr" loading="lazy">
-                    class="circle"> WSC 4th Best Team Jr
+                    WSC 4th Best Team Jr
                     |
                 </div>
                 <div class="scrolling-item">
                     <img src="achievements/3.png" alt="Research Paper 2nd Place" loading="lazy">
-                    class="circle"> Research
+                    Research
                     Paper Presentation 2nd Place |
                 </div>
                 <div class="scrolling-item">
                     <img src="achievements/4.png" alt="SRITEQ Hackathon Finalist" loading="lazy">
-                    class="circle"> SRITEQ
+                    SRITEQ
                     Hackathon Finalist |
                 </div>
             </div>
         </div>
     </section>
+    <section>
+        <div class="achievements-container">
+            <div class="donut-chart">
+                <div class="donut-segment" data-achievement="behes"></div>
+                <div class="donut-segment" data-achievement="wsc"></div>
+                <div class="donut-segment" data-achievement="research"></div>
+                <div class="donut-segment" data-achievement="sriteq"></div>
+            </div>
 
-    <section class="page-section container">
-        <h2 style="text-align: center; margin-bottom: 1.5rem">Featured Projects</h2>
-        <div class="project-container">
-            <div class="project-card">
-                <h3>Echoes of Mughal Splendor</h3>
-                <p>A visual homage to the grandeur and artistic brilliance of Mughal architecture.</p>
-                <a href="https://www.behance.net/gallery/220732809/Echoes-of-Mughal-Splendor" target="_blank">View
-                    Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Echoes in Design: A Symphony of Posters</h3>
-                <p>An exploration of storytelling through intricate compositions and dynamic visuals.</p>
-                <a href="https://www.behance.net/gallery/221991597/Echoes-in-Design-A-Symphony-of-Posters"
-                    target="_blank">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>The Flo: "Jab We Design"</h3>
-                <p>Where creativity meets culture—bringing fresh perspectives to visual identity.</p>
-                <a href="https://www.behance.net/gallery/219761107/The-FloJab-We-Design" target="_blank">View
-                    Project</a>
+            <div class="details-container">
+                <div class="details-panel" id="behes-panel">
+                    <h2>Behes 2nd Place</h2>
+                    <p>Achieved 2nd place in the Behes Individual Competition, demonstrating exceptional public speaking
+                        skills and strategic communication capabilities.</p>
+                </div>
+                <div class="details-panel" id="wsc-panel">
+                    <h2>WSC 4th Best Team</h2>
+                    <p>Secured 4th place in the World Schools Debate Championship, showcasing advanced team
+                        collaboration,
+                        analytical thinking, and competitive debate expertise.</p>
+                </div>
+                <div class="details-panel" id="research-panel">
+                    <h2>Research Paper 2nd</h2>
+                    <p>Ranked 2nd in an international research paper presentation on space exploration, highlighting
+                        innovative research methodology and comprehensive analytical approach.</p>
+                </div>
+                <div class="details-panel" id="sriteq-panel">
+                    <h2>SRITEQ Finalist</h2>
+                    <p>Recognized as a finalist in the SRITEQ Hackathon, exemplifying cutting-edge problem-solving
+                        skills,
+                        technological innovation, and creative solution development.</p>
+                </div>
             </div>
         </div>
-        <p>Check out my full design work on: <a href="https://www.behance.net/eankotadia" target="_blank"
-                style="color: #888;">Behance</a>.
-        </p>
-        <p>Check out all of my projects on: <a href="pages/projects.html" target="_blank" style="color: #888;">More
-                Projects</a>.
-        </p>
     </section>
 
-    <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+    <script>
+        document.querySelectorAll('.donut-segment').forEach(segment => {
+            segment.addEventListener('click', function () {
+                const isExpanded = this.classList.contains('expanded');
+                const activePanel = document.querySelector('.details-panel.active');
 
-    <script src="script.js"></script>
+                if (isExpanded) {
+                    this.classList.remove('expanded');
+                    if (activePanel) {
+                        activePanel.classList.remove('active');
+                    }
+                } else {
+                    const isAnyExpanded = document.querySelector('.donut-segment.expanded');
+                    if (isAnyExpanded) {
+                        isAnyExpanded.classList.remove('expanded');
+                        document.querySelector('.details-panel.active').classList.remove('active');
+                    }
+
+                    this.classList.add('expanded');
+                    const achievementKey = this.dataset.achievement;
+                    document.getElementById(`${achievementKey}-panel`).classList.add('active');
+                }
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            const chart = document.querySelector('.donut-chart');
+            if (!chart.contains(e.target)) {
+                const activeSegment = document.querySelector('.donut-segment.expanded');
+                const activePanel = document.querySelector('.details-panel.active');
+                if (activeSegment) {
+                    activeSegment.classList.remove('expanded');
+                }
+                if (activePanel) {
+                    activePanel.classList.remove('active');
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

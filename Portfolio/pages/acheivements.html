@@ -4,32 +4,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievements</title>
+    <title>Professional Achievements</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archive&family=Bodoni+Flf:wght@400;700&family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <script src="../script.js"></script>
+    <style>
+        section {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .scrolling-list {
+            width: 100%;
+            overflow: hidden;
+            background-color: #111827;
+            padding: 15px 0;
+            margin: 30px 0;
+        }
+
+        .scrolling-text {
+            display: flex;
+            white-space: nowrap;
+            animation: scrollText 30s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scrolling-item {
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .scrolling-item img {
+            height: 30px;
+            width: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        .achievements-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .donut-chart {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #000000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid #333;
+        }
+
+        .donut-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0.9;
+        }
+
+        .donut-segment:nth-child(1) {
+            background-color: #2e3745;
+            transform: rotate(45deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(2) {
+            background-color: #292f37;
+            transform: rotate(135deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(3) {
+            background-color: #565c68;
+            transform: rotate(225deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .donut-segment:nth-child(4) {
+            background-color: #727a88;
+            transform: rotate(315deg);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 400px;
+            position: relative;
+        }
+
+        .details-panel {
+            background-color: #111827;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid #333;
+            top: 0;
+            left: 0;
+            transform: scale(0.9);
+            z-index: -1;
+        }
+
+        .details-panel.active {
+            opacity: 1;
+            z-index: 10;
+            transform: scale(1);
+        }
+
+        .details-panel h2 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .details-panel p {
+            color: #cccccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            opacity: 1;
+        }
+
+        .donut-segment.expanded {
+            transform: scale(1.1) rotate(0deg);
+            opacity: 1;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .page-title,
+        .intro-text,
+        .instruction-text {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .additional-content {
+            background-color: #111827;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 40px 0;
+            color: #ffffff;
+        }
+
+        .additional-content h2 {
+            color: #ffffff;
+        }
+
+        .additional-content p {
+            color: #cccccc;
+        }
+
+        .divider {
+            height: 2px;
+            background-color: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .mindmap-container {
+            width: 900px;
+            height: 700px;
+            position: relative;
+            background-color: #fafafa;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+            margin-top: 70vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-bottom: -50vh;
+
+        }
+
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: transparent;
+            font-weight: 500;
+            font-size: 11px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+            z-index: 100;
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .node span {
+            padding: 5px;
+            line-height: 1.2;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .node:hover span {
+            opacity: 1;
+        }
+
+        .central-node {
+            width: 160px;
+            height: 160px;
+            background-color: #f8f8f8;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .primary-node {
+            width: 120px;
+            height: 120px;
+            background-color: #f0f0f0;
+        }
+
+        .secondary-node {
+            width: 90px;
+            height: 90px;
+            background-color: #e8e8e8;
+            font-size: 10px;
+        }
+
+        .overlap-node {
+            width: 95px;
+            height: 95px;
+            background-color: #e0e0e0;
+        }
+
+        .line {
+            position: absolute;
+            transform-origin: 0 50%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .primary-line {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .secondary-line {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dashed-line {
+            background: repeating-linear-gradient(to right,
+                    rgba(0, 0, 0, 0.05),
+                    rgba(0, 0, 0, 0.05) 5px,
+                    transparent 5px,
+                    transparent 8px);
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 300;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #000;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .tag {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            padding: 1px 4px;
+            font-size: 8px;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="/pages/projects.html" class="nav-link">Projects</a>
-        <a href="/pages/acheivements.html" class="nav-link">Achievements</a>
-
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="acheivements.html" class="nav-link">Achievements</a>
     </nav>
+    <div class="divider"></div>
+    <section>
+        <div style="padding: 30px;"></div>
+        <h1 class="page-title">Professional Achievements</h1>
+        <p class="intro-text">Explore my journey through academic and professional excellence.</p>
 
-    <section class="page-section container">
-        <h1>Achievements</h1>
         <div class="scrolling-list">
             <div class="scrolling-text">
-                <div class="scrolling-item">Behes Individual 2nd Place Sr |</div>
-                <div class="scrolling-item">WSC 4th Best Team Jr |</div>
-                <div class="scrolling-item">Research Paper Presentation 2nd Place |</div>
-                <div class="scrolling-item">SRITEQ Hackathon Finalist |</div>
+                <div class="scrolling-item">
+                    <img src="achievements/1.png" alt="Behes 2nd Place Sr" loading="lazy">
+                    Behes Individual 2nd Place Sr |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/2.png" alt="WSC 4th Best Team Jr" loading="lazy">
+                    WSC 4th Best Team Jr |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/3.png" alt="Research Paper 2nd Place" loading="lazy">
+                    Research Paper Presentation 2nd Place |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/4.png" alt="SRITEQ Hackathon Finalist" loading="lazy">
+                    SRITEQ Hackathon Finalist |
+                </div>
+                <!-- Duplicate items to ensure continuous scrolling -->
+                <div class="scrolling-item">
+                    <img src="achievements/1.png" alt="Behes 2nd Place Sr" loading="lazy">
+                    Behes Individual 2nd Place Sr |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/2.png" alt="WSC 4th Best Team Jr" loading="lazy">
+                    WSC 4th Best Team Jr |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/3.png" alt="Research Paper 2nd Place" loading="lazy">
+                    Research Paper Presentation 2nd Place |
+                </div>
+                <div class="scrolling-item">
+                    <img src="achievements/4.png" alt="SRITEQ Hackathon Finalist" loading="lazy">
+                    SRITEQ Hackathon Finalist |
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <p class="instruction-text">Click on a segment of the mind map below to explore each achievement</p>
+
+        <div class="mindmap-container">
+            <!-- Central Node -->
+            <div class="node central-node" style="left: 370px; top: 270px;">
+                <span>Academic Competition Skills</span>
+            </div>
+
+            <!-- Primary Nodes -->
+            <div class="node primary-node" style="left: 200px; top: 150px;">
+                <span>Communication<br>
+                    <div class="tag">PRIMARY</div>
+                </span>
+            </div>
+
+            <div class="node primary-node" style="left: 600px; top: 150px;">
+                <span>Research<br>
+                    <div class="tag">PRIMARY</div>
+                </span>
+            </div>
+
+            <div class="node primary-node" style="left: 150px; top: 400px;">
+                <span>Critical Thinking<br>
+                    <div class="tag">PRIMARY</div>
+                </span>
+            </div>
+
+            <div class="node primary-node" style="left: 650px; top: 400px;">
+                <span>Technology<br>
+                    <div class="tag">PRIMARY</div>
+                </span>
+            </div>
+
+            <div class="node primary-node" style="left: 400px; top: 500px;">
+                <span>Collaboration<br>
+                    <div class="tag">PRIMARY</div>
+                </span>
+            </div>
+
+            <!-- Secondary Nodes - Communication -->
+            <div class="node secondary-node" style="left: 115px; top: 65px;">
+                <span>Public Speaking<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 265px; top: 35px;">
+                <span>Debate Skills<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 65px; top: 165px;">
+                <span>Persuasion<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <!-- Secondary Nodes - Research -->
+            <div class="node secondary-node" style="left: 715px; top: 65px;">
+                <span>Data Analysis<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 565px; top: 35px;">
+                <span>Methodology<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 765px; top: 165px;">
+                <span>Citation<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <!-- Secondary Nodes - Critical Thinking -->
+            <div class="node secondary-node" style="left: 65px; top: 315px;">
+                <span>Analysis<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 45px; top: 465px;">
+                <span>Problem-Solving<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 185px; top: 545px;">
+                <span>Logical Reasoning<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <!-- Secondary Nodes - Technology -->
+            <div class="node secondary-node" style="left: 765px; top: 315px;">
+                <span>Programming<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 785px; top: 465px;">
+                <span>Innovation<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 645px; top: 545px;">
+                <span>Tool Proficiency<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <!-- Secondary Nodes - Collaboration -->
+            <div class="node secondary-node" style="left: 315px; top: 585px;">
+                <span>Teamwork<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <div class="node secondary-node" style="left: 515px; top: 585px;">
+                <span>Leadership<br>
+                    <div class="tag">SECONDARY</div>
+                </span>
+            </div>
+
+            <!-- Overlap Nodes -->
+            <div class="node overlap-node" style="left: 315px; top: 265px;">
+                <span>Presentation</span>
+            </div>
+
+            <div class="node overlap-node" style="left: 515px; top: 265px;">
+                <span>Evidence-Based Argument</span>
+            </div>
+
+            <div class="node overlap-node" style="left: 265px; top: 465px;">
+                <span>Strategic Thinking</span>
+            </div>
+
+            <div class="node overlap-node" style="left: 415px; top: 115px;">
+                <span>Academic Writing</span>
+            </div>
+
+            <div class="node overlap-node" style="left: 565px; top: 465px;">
+                <span>Creative Solutions</span>
+            </div>
+
+            <!-- Lines are rendered using JavaScript -->
+
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #f0f0f0;"></div>
+                    <span>Primary Skill</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e8e8e8;"></div>
+                    <span>Secondary Skill</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e0e0e0;"></div>
+                    <span>Skill Overlap</span>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="achievements-container">
+            <div class="donut-chart">
+                <div class="donut-segment" data-achievement="behes"></div>
+                <div class="donut-segment" data-achievement="wsc"></div>
+                <div class="donut-segment" data-achievement="research"></div>
+                <div class="donut-segment" data-achievement="sriteq"></div>
+            </div>
+
+            <div class="details-container">
+                <div class="details-panel" id="behes-panel">
+                    <h2>Behes 2nd Place</h2>
+                    <p>Achieved 2nd place in the Behes Individual Competition, demonstrating exceptional public speaking
+                        skills and strategic communication capabilities.</p>
+                </div>
+                <div class="details-panel" id="wsc-panel">
+                    <h2>WSC 4th Best Team</h2>
+                    <p>Secured 4th place in the World Schools Debate Championship, showcasing advanced team
+                        collaboration,
+                        analytical thinking, and competitive debate expertise.</p>
+                </div>
+                <div class="details-panel" id="research-panel">
+                    <h2>Research Paper 2nd</h2>
+                    <p>Ranked 2nd in an international research paper presentation on space exploration, highlighting
+                        innovative research methodology and comprehensive analytical approach.</p>
+                </div>
+                <div class="details-panel" id="sriteq-panel">
+                    <h2>SRITEQ Finalist</h2>
+                    <p>Recognized as a finalist in the SRITEQ Hackathon, exemplifying cutting-edge problem-solving
+                        skills,
+                        technological innovation, and creative solution development.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+    <div class="divider"></div>
+
+    <section>
+        <div class="additional-content">
+            <h2>My Approach to Excellence</h2>
+            <p>Each achievement represents not just the end result, but the journey of growth and learning. My approach
+                combines meticulous preparation, adaptive thinking, and a willingness to step outside comfort zones.</p>
+            <p>Whether competing in debate competitions, presenting research findings, or developing innovative
+                solutions in hackathons, I bring the same dedication and passion to every project.</p>
+        </div>
+    </section>
+
+    <script>
+        // Function to draw a line between two nodes
+        function drawLine(x1, y1, x2, y2, isDashed = false, isPrimary = true, width = 2.5, opacity = 0.7) {
+            // Calculate length and angle
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+
+            // Create line element
+            const line = document.createElement('div');
+            line.className = 'line';
+
+            if (isPrimary) {
+                line.classList.add('primary-line');
+            } else {
+                line.classList.add('secondary-line');
+            }
+
+            if (isDashed) {
+                line.classList.add('dashed-line');
+            }
+
+            // Position and rotate
+            line.style.width = `${length}px`;
+            line.style.height = `${width}px`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1 - width / 2}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.opacity = opacity;
+
+            // Add to container
+            document.querySelector('.mindmap-container').appendChild(line);
+        }
+
+        // Adjust positions to center of nodes for the larger nodes
+        const center = {
+            x: 450,
+            y: 350,
+            r: 80
+        };
+
+        const primaryNodes = [
+            { x: 250, y: 200, r: 60 }, // Communication
+            { x: 650, y: 200, r: 60 }, // Research
+            { x: 200, y: 450, r: 60 }, // Critical Thinking
+            { x: 700, y: 450, r: 60 }, // Technology
+            { x: 450, y: 550, r: 60 }  // Collaboration
+        ];
+
+        const secondaryNodes = [
+            { x: 150, y: 100, r: 45 },  // Public Speaking
+            { x: 300, y: 70, r: 45 },   // Debate Skills
+            { x: 100, y: 200, r: 45 },  // Persuasion
+            { x: 750, y: 100, r: 45 },  // Data Analysis
+            { x: 600, y: 70, r: 45 },   // Methodology
+            { x: 800, y: 200, r: 45 },  // Citation
+            { x: 100, y: 350, r: 45 },  // Analysis
+            { x: 80, y: 500, r: 45 },   // Problem-Solving
+            { x: 220, y: 580, r: 45 },  // Logical Reasoning
+            { x: 800, y: 350, r: 45 },  // Programming
+            { x: 820, y: 500, r: 45 },  // Innovation
+            { x: 680, y: 580, r: 45 },  // Tool Proficiency
+            { x: 350, y: 620, r: 45 },  // Teamwork
+            { x: 550, y: 620, r: 45 }   // Leadership
+        ];
+
+        const overlapNodes = [
+            { x: 350, y: 300, r: 47.5 }, // Presentation
+            { x: 550, y: 300, r: 47.5 }, // Evidence-Based Argument
+            { x: 300, y: 500, r: 47.5 }, // Strategic Thinking
+            { x: 450, y: 150, r: 47.5 }, // Academic Writing
+            { x: 600, y: 500, r: 47.5 }  // Creative Solutions
+        ];
+
+        // Central to Primary connections
+        primaryNodes.forEach(node => {
+            drawLine(center.x, center.y, node.x, node.y);
+        });
+
+        // Primary to Secondary connections
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, secondaryNodes[0].x, secondaryNodes[0].y, false, false);
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, secondaryNodes[1].x, secondaryNodes[1].y, false, false);
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, secondaryNodes[2].x, secondaryNodes[2].y, false, false);
+
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, secondaryNodes[3].x, secondaryNodes[3].y, false, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, secondaryNodes[4].x, secondaryNodes[4].y, false, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, secondaryNodes[5].x, secondaryNodes[5].y, false, false);
+
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, secondaryNodes[6].x, secondaryNodes[6].y, false, false);
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, secondaryNodes[7].x, secondaryNodes[7].y, false, false);
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, secondaryNodes[8].x, secondaryNodes[8].y, false, false);
+
+        drawLine(primaryNodes[3].x, primaryNodes[3].y, secondaryNodes[9].x, secondaryNodes[9].y, false, false);
+        drawLine(primaryNodes[3].x, primaryNodes[3].y, secondaryNodes[10].x, secondaryNodes[10].y, false, false);
+        drawLine(primaryNodes[3].x, primaryNodes[3].y, secondaryNodes[11].x, secondaryNodes[11].y, false, false);
+
+        drawLine(primaryNodes[4].x, primaryNodes[4].y, secondaryNodes[12].x, secondaryNodes[12].y, false, false);
+        drawLine(primaryNodes[4].x, primaryNodes[4].y, secondaryNodes[13].x, secondaryNodes[13].y, false, false);
+
+        // Connections to Overlap Nodes (dashed)
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, overlapNodes[0].x, overlapNodes[0].y, true, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, overlapNodes[1].x, overlapNodes[1].y, true, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, overlapNodes[3].x, overlapNodes[3].y, true, false);
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, overlapNodes[3].x, overlapNodes[3].y, true, false);
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, overlapNodes[2].x, overlapNodes[2].y, true, false);
+        drawLine(primaryNodes[3].x, primaryNodes[3].y, overlapNodes[4].x, overlapNodes[4].y, true, false);
+        drawLine(primaryNodes[4].x, primaryNodes[4].y, overlapNodes[2].x, overlapNodes[2].y, true, false);
+        drawLine(primaryNodes[4].x, primaryNodes[4].y, overlapNodes[4].x, overlapNodes[4].y, true, false);
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, overlapNodes[0].x, overlapNodes[0].y, true, false);
+
+        // Cross-connections between primary nodes (dashed)
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, primaryNodes[2].x, primaryNodes[2].y, true, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, primaryNodes[3].x, primaryNodes[3].y, true, false);
+        drawLine(primaryNodes[0].x, primaryNodes[0].y, primaryNodes[4].x, primaryNodes[4].y, true, false);
+        drawLine(primaryNodes[1].x, primaryNodes[1].y, primaryNodes[4].x, primaryNodes[4].y, true, false);
+        drawLine(primaryNodes[2].x, primaryNodes[2].y, primaryNodes[3].x, primaryNodes[3].y, true, false);
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show first panel by default
+            document.querySelector('.donut-segment').classList.add('expanded');
+            document.getElementById('behes-panel').classList.add('active');
+
+            document.querySelectorAll('.donut-segment').forEach(segment => {
+                segment.addEventListener('click', function () {
+                    const isExpanded = this.classList.contains('expanded');
+                    const activePanel = document.querySelector('.details-panel.active');
+
+                    // Clear all expanded states first
+                    document.querySelectorAll('.donut-segment').forEach(seg => {
+                        seg.classList.remove('expanded');
+                    });
+                    document.querySelectorAll('.details-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+
+                    // If this wasn't the previously expanded one, expand it
+                    if (!isExpanded) {
+                        this.classList.add('expanded');
+                        const achievementKey = this.dataset.achievement;
+                        document.getElementById(`${achievementKey}-panel`).classList.add('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                const chart = document.querySelector('.donut-chart');
+                const container = document.querySelector('.details-container');
+                if (!chart.contains(e.target) && !container.contains(e.target)) {
+                    const activeSegment = document.querySelector('.donut-segment.expanded');
+                    const activePanel = document.querySelector('.details-panel.active');
+                    if (activeSegment) {
+                        activeSegment.classList.remove('expanded');
+                    }
+                    if (activePanel) {
+                        activePanel.classList.remove('active');
+                    }
+
+                    // Show default panel when clicking outside
+                    document.querySelector('.donut-segment').classList.add('expanded');
+                    document.getElementById('behes-panel').classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

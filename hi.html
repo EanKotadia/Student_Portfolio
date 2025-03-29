@@ -5,36 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Published Research Paper</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <script src="../../script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .pdf-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        iframe {
+            width: 80%;
+            height: 600px;
+            border: none;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/projects.html" class="nav-link">Projects</a>
-        <a href="pages/acheivements.html" class="nav-link">Achievements</a>
+        <a href="../projects.html" class="nav-link">Projects</a>
+        <a href="../achievements.html" class="nav-link">Achievements</a>
     </nav>
+
     <header>
         <h1>Exploring the Viability of Human Settlement on Mars</h1>
     </header>
+
     <section>
         <h2>What inspired me to explore this topic?</h2>
         <p>The idea of humanity becoming a multi-planetary species has always fascinated me...</p>
     </section>
+
     <section>
         <h2>Why does this topic matter to me?</h2>
         <p>I love tackling complex problems, and there's no bigger challenge than transforming a barren planet...</p>
     </section>
+
     <section>
         <h2>Key challenges addressed</h2>
         <p>Mars is hostile to human life, with extreme temperatures, high radiation, and an unbreathable atmosphere...
         </p>
     </section>
+
     <section>
         <h2>Future evolution of this research</h2>
         <p>As technology advances, concepts like 3D-printed habitats, artificial magnetospheres...</p>
     </section>
+
+    <section class="pdf-container">
+        <iframe src="research-paper.pdf"></iframe>
+    </section>
+
     <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
 </body>
 
