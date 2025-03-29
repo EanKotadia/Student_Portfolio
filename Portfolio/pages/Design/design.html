@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../script.js" defer></script>
+    <style>
+        body {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+        }
+
+        .posters-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .poster {
+            width: 250px;
+            height: 350px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .poster:hover {
+            transform: scale(1.05);
+        }
+
+        .poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonials-container {
+            position: relative;
+            width: 60%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .testimonials {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 1.5rem;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../projects.html" class="nav-link">Projects</a>
+        <a href="../achievements.html" class="nav-link">Achievements</a>
+    </nav>
+
+    <header class="section">
+        <h1>Design Portfolio</h1>
+        <p>Designing impactful visuals with creativity and strategy.</p>
+    </header>
+
+    <section class="section">
+        <h2>My Work</h2>
+        <div class="posters-container">
+            <div class="poster"><img src="../../posters/1.png" alt="FLO Design"></div>
+            <div class="poster"><img src="../../posters/2.png" alt="Formal Invite"></div>
+            <div class="poster"><img src="../../posters/3.png" alt="Young Poets Society"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Testimonials</h2>
+        <div class="testimonials-container">
+            <button class="nav-button prev" onclick="prevSlide()">&#10094;</button>
+            <div class="testimonials" id="testimonial-slider">
+                <div class="testimonial">
+                    <img src="../../images/person1.png" alt="User 1">
+                    <blockquote>"Excellent designs for FLO! Highly professional." - Dhruv Dasgupta</blockquote>
+                </div>
+                <div class="testimonial">
+                    <img src="../../images/person2.png" alt="User 2">
+                    <blockquote>"Creative and visually stunning work!" - Riya Patel</blockquote>
+                </div>
+                <div class="testimonial">
+                    <img src="../../images/person3.png" alt="User 3">
+                    <blockquote>"Great attention to detail in every poster." - Aman Verma</blockquote>
+                </div>
+                <div class="testimonial">
+                    <img src="../../images/person4.png" alt="User 4">
+                    <blockquote>"Incredible execution!" - Sophia Martinez</blockquote>
+                </div>
+                <div class="testimonial">
+                    <img src="../../images/person5.png" alt="User 5">
+                    <blockquote>"A true visionary in design!" - Liam Wilson</blockquote>
+                </div>
+            </div>
+            <button class="nav-button next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+
+    <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+
+    <script>
+        let index = 0;
+        const testimonials = document.querySelectorAll(".testimonial");
+        const slider = document.getElementById("testimonial-slider");
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextSlide() {
+            index = (index + 1) % testimonials.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + testimonials.length) % testimonials.length;
+            updateSlider();
+        }
+    </script>
+</body>
+
+</html>
