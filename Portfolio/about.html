@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archive&family=Bodoni+Flf:wght@400;700&family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Resetting default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Centering the content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Typing effect for "About Me" */
+        .typing-header {
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: #ffffff;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #3498db;
+            width: 0;
+            animation: typing 5s steps(40) 1s forwards, blink-caret 1s step-end infinite;
+            margin-bottom: 15px;
+        }
+
+        /* Typing animation */
+        @keyframes typing {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Cursor blinking effect */
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Styling for content text */
+        .content {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-align: justify;
+            white-space: pre-line;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        /* Fade-in effect for content */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Image gallery styling */
+        .image {
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            box-shadow: 0px 6px 15px rgb(72, 72, 72);
+            opacity: 0;
+            position: relative;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            filter: grayscale(100%) contrast(1.2) brightness(0.8);
+            margin: 20px;
+            display: inline-block;
+        }
+
+        /* Left-to-right image animation */
+        .left-to-right {
+            animation: leftToRight 7s infinite alternate;
+        }
+
+        /* Right-to-left image animation */
+        .right-to-left {
+            animation: rightToLeft 7s infinite alternate;
+        }
+
+        /* Animation for left-to-right movement */
+        @keyframes leftToRight {
+            0% {
+                left: -220px;
+                opacity: 0;
+                transform: scale(0.8) rotate(-45deg);
+            }
+
+            50% {
+                left: 50px;
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+
+            100% {
+                left: -220px;
+                opacity: 0;
+                transform: scale(0.8) rotate(-45deg);
+            }
+        }
+
+        /* Animation for right-to-left movement */
+        @keyframes rightToLeft {
+            0% {
+                right: -220px;
+                opacity: 0;
+                transform: scale(0.8) rotate(45deg);
+            }
+
+            50% {
+                right: 50px;
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+
+            100% {
+                right: -220px;
+                opacity: 0;
+                transform: scale(0.8) rotate(45deg);
+            }
+        }
+
+        /* For responsive behavior */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .typing-header {
+                font-size: 3rem;
+            }
+
+            .content {
+                font-size: 1rem;
+            }
+
+            .image {
+                width: 180px;
+                height: 120px;
+            }
+        }
+
+
+
+        /* Basic Timeline Container Styling */
+        .journey-container {
+            position: relative;
+            padding: 50px 20px;
+            background-color: #000;
+            /* Black background */
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Vertical Timeline Line */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #fff;
+            /* White color for the timeline line */
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            position: relative;
+            display: flex;
+            margin-left: 60px;
+            margin-bottom: 50px;
+            cursor: pointer;
+            font-family: 'Bodoni FLF', serif;
+            /* Font for the items */
+        }
+
+        /* Timeline Marker */
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background-color: #3498db;
+            /* Blue marker */
+            border-radius: 50%;
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Timeline Label */
+        .timeline-label {
+            position: absolute;
+            left: -90px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #fff;
+            /* White text for label */
+            font-family: 'Space Mono', monospace;
+            /* Monospace font for the label */
+            font-weight: normal;
+        }
+
+        /* Timeline Content Styling */
+        .timeline-content {
+            width: 100%;
+            background-color: #1c1c1c;
+            /* Slightly darker background for the content */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            display: none;
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .timeline-content.expanded {
+            display: block;
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Link Styling */
+        .timeline-content a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #3498db;
+            /* Blue color for links */
+            text-decoration: none;
+            font-weight: 700;
+            /* Bold for links */
+        }
+
+        .timeline-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .timeline-item {
+                margin-left: 0;
+                margin-bottom: 30px;
+            }
+
+            .timeline-label {
+                left: -50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with typing effect -->
+        <h1 class="typing-header">About Me</h1>
+
+        <!-- Content Section -->
+        <p class="content">
+            I'm a passionate designer, developer, and innovator, always looking for ways to merge creativity with
+            technology.
+            My graphic design journey began in grade 6 when I helped my mother create visuals for official school
+            accounts, sparking my love for digital design. Since then, I've explored various creative and technical
+            fields, from branding and web design to app development and hackathons.
+
+            I've worked on projects like Newsify, an AI-powered news verification platform; VillageGuide, an interactive
+            web app built with Firebase; and several branding and poster designs for FLO and the Young Poets Society.
+            Whether it's designing impactful visuals, coding functional web applications, or writing poetry, I thrive on
+            pushing creative and technical boundaries.
+        </p>
+
+        <!-- Image Section -->
+        <div>
+            <img src="images/C-1.jpeg" alt="Me Working" class="image left-to-right">
+            <img src="images/C-2.jpeg" alt="My Design" class="image right-to-left">
+            <img src="images/C-3.png" alt="Hackathon Moment" class="image left-to-right">
+            <img src="images/C-4.jpeg" alt="Winning Moment" class="image right-to-left">
+            <img src="images/C-5.jpeg" alt="Hackathon Moment" class="image left-to-right">
+            <img src="images/C-6.jpeg" alt="Winning Moment" class="image right-to-left">
+        </div>
+        <div class="journey-container">
+            <div class="journey-container">
+                <!-- Vertical Timeline Line with animation -->
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                </div>
+
+                <!-- Timeline Items -->
+                <div class="timeline-item" id="card1">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2021</div>
+                    <div class="timeline-content">
+                        <h2>Started Graphic Design (Grade 6)</h2>
+                        <p>I began my journey with graphic design by helping my mother with visuals for school accounts.
+                            This is where my passion for design grew.</p>
+                        <a href="design.html" target="_blank">Learn More</a>
+                        <a href="https://www.behance.net/eankotadia" target="_blank">My Work</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="card2">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2022</div>
+                    <div class="timeline-content">
+                        <h2>Explored Branding & Web Design</h2>
+                        <p>As I progressed, I explored web design and branding. It led me to build websites and design
+                            logos
+                            for various projects.</p>
+                        <a href="https://github.com/EanKotadia" target="_blank">View Projects</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="card3">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2023</div>
+                    <div class="timeline-content">
+                        <h2>Hackathon Achievements</h2>
+                        <p>Participating in hackathons helped me sharpen my problem-solving skills. I placed as a
+                            finalist
+                            in several hackathons.</p>
+                        <a href="https://github.com/EanKotadia" target="_blank">View Projects</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="card4">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2024</div>
+                    <div class="timeline-content">
+                        <h2>AI-Powered News Verification</h2>
+                        <p>Newsify is an AI-powered platform to verify news and check its credibility. I developed it to
+                            address the spread of misinformation.</p>
+                        <a href="https://github.com/EanKotadia/SriTeq2024" target="_blank">See Project</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="card5">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2024</div>
+                    <div class="timeline-content">
+                        <h2>VillageGuide Web App</h2>
+                        <p>VillageGuide is an interactive web app built with Firebase. It helps users discover local
+                            businesses and events.</p>
+                        <a href="https://github.com/0hN1ght/Pahunch-A-local-tourism-project-" target="_blank">Learn
+                            More</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="card6">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-label">2025</div>
+                    <div class="timeline-content">
+                        <h2>FLO Branding and Poster Designs</h2>
+                        <p>I worked on branding and poster designs for the FLO organization. It helped me refine my
+                            skills
+                            in visual communication.</p>
+                        <a href="https://www.behance.net/gallery/219761107/The-FloJab-We-Design" target="_blank">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                /* Enhanced Timeline Container Styling */
+                .journey-container {
+                    position: relative;
+                    padding: 50px 20px;
+                    background-color: #000;
+                    /* Black background preserved */
+                    color: #fff;
+                    font-family: 'Space Mono', monospace;
+                    /* Changed to Space Mono */
+                }
+
+                /* Improved Vertical Timeline Line - moved to the right */
+                .timeline-line {
+                    position: absolute;
+                    left: 50px;
+                    /* Keep this as is */
+                    top: 0;
+                    height: 100%;
+                    width: 4px;
+                    /* Increased from 2px */
+                    background-color: rgba(255, 255, 255, 0.7);
+                    /* White color for the timeline line */
+                }
+
+
+                /* Timeline progress indicator */
+                .timeline-progress {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 0;
+                    background-color: #4C9E8A;
+                    /* Changed to #4C9E8A */
+                    transition: height 1s ease-out;
+                }
+
+                /* Timeline Items - adjusted margin-left to move right */
+                .timeline-item {
+                    position: relative;
+                    display: flex;
+                    margin-left: 90px;
+                    /* Increased from 60px to move right */
+                    margin-bottom: 50px;
+                    cursor: pointer;
+                    font-family: 'Space Mono', monospace;
+                    /* Changed to Space Mono */
+                    transition: transform 0.3s ease-out;
+                }
+
+                .timeline-item:hover {
+                    transform: translateX(5px);
+                }
+
+                .timeline-marker {
+                    width: 40px;
+                    /* Reduced from 80px */
+                    height: 40px;
+                    /* Reduced from 80px */
+                    background-color: #4C9E8A;
+                    /* Changed to #4C9E8A */
+                    border-radius: 50%;
+                    position: absolute;
+                    left: -25px;
+                    /* Adjusted for new smaller size */
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                .timeline-item:hover .timeline-marker {
+                    transform: translateY(-50%) scale(1.2);
+                    box-shadow: 0 0 12px rgba(76, 158, 138, 0.7);
+                    /* Changed to match #4C9E8A */
+                }
+
+                /* Timeline Label - larger text */
+                .timeline-label {
+                    position: absolute;
+                    left: -90px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 18px;
+                    /* Increased from 12px */
+                    color: #fff;
+                    font-family: 'Space Mono', monospace;
+                    font-weight: normal;
+                    opacity: 0.7;
+                    transition: opacity 0.3s ease;
+                }
+
+
+                .timeline-item:hover .timeline-label {
+                    opacity: 1;
+                }
+
+                .timeline-content h2 {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    color: #fff;
+                    font-family: 'Space Mono', monospace;
+                    font-size: 1.5rem;
+                    /* Increased from 1.2rem */
+                    letter-spacing: 0.5px;
+                }
+
+
+                .timeline-content.expanded {
+                    display: block;
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+
+                /* Link Styling - enhanced but keeping color */
+                .timeline-content a {
+                    display: inline-block;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                    color: #4C9E8A;
+                    /* Changed to #4C9E8A */
+                    text-decoration: none;
+                    font-weight: 700;
+                    /* Bold for links preserved */
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    transition: background-color 0.3s ease, transform 0.3s ease;
+                    font-family: 'Space Mono', monospace;
+                    /* Added Space Mono */
+                }
+
+                .timeline-content a:hover {
+                    text-decoration: none;
+                    background-color: rgba(76, 158, 138, 0.1);
+                    /* Changed to match #4C9E8A */
+                    transform: translateY(-2px);
+                }
+
+                /* Enhanced title styling */
+                .timeline-content h2 {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    color: #fff;
+                    font-family: 'Space Mono', monospace;
+                    /* Changed to Space Mono */
+                    font-size: 1.2rem;
+                    letter-spacing: 0.5px;
+                }
+
+                .timeline-content p {
+                    font-family: 'Space Mono', monospace;
+                    font-size: 1.2rem;
+                    /* Increased from 1rem */
+                    line-height: 1.8;
+                    letter-spacing: 0.3px;
+                }
+
+                /* Responsive Styling */
+                @media (max-width: 768px) {
+                    .timeline-line {
+                        left: 30px;
+                        /* Adjusted for mobile */
+                    }
+
+                    .timeline-item {
+                        margin-left: 60px;
+                        /* Adjusted for mobile */
+                    }
+
+                    .timeline-label {
+                        left: -60px;
+                    }
+
+                    .timeline-marker {
+                        left: -30px;
+                        /* Adjusted for mobile */
+                    }
+                }
+            </style>
+
+            <script>
+                // Enhanced JavaScript for timeline functionality while maintaining original behavior
+                document.addEventListener('DOMContentLoaded', function () {
+                    const cards = document.querySelectorAll('.timeline-item');
+                    let lastClickedCard = null;
+                    const timelineProgress = document.querySelector('.timeline-progress');
+
+                    // Initialize timeline progress
+                    setTimeout(updateTimelineProgress, 500);
+
+                    // Scroll-based animations
+                    function isElementInViewport(el) {
+                        const rect = el.getBoundingClientRect();
+                        return (
+                            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                            rect.bottom >= 0
+                        );
+                    }
+
+                    function updateTimelineProgress() {
+                        // Get the overall progress based on visible items
+                        let visibleCount = 0;
+                        let totalCount = 0;
+
+                        cards.forEach(card => {
+                            totalCount++;
+                            if (isElementInViewport(card)) {
+                                visibleCount++;
+                            }
+                        });
+
+                        const progress = visibleCount > 0 ? (visibleCount / totalCount) * 100 : 0;
+                        timelineProgress.style.height = `${progress}%`;
+                    }
+
+                    // Add click event listeners to timeline items
+                    cards.forEach(card => {
+                        card.addEventListener('click', function () {
+                            // Close the last clicked card if it's different from the current one
+                            if (lastClickedCard && lastClickedCard !== card) {
+                                lastClickedCard.querySelector('.timeline-content').classList.remove('expanded');
+                            }
+
+                            // Toggle the current card with enhanced animation
+                            const content = card.querySelector('.timeline-content');
+                            content.classList.toggle('expanded');
+
+                            // Update the last clicked card
+                            lastClickedCard = content.classList.contains('expanded') ? card : null;
+                        });
+                    });
+
+                    // Close cards if anywhere outside the timeline is clicked
+                    document.addEventListener('click', function (e) {
+                        if (!e.target.closest('.timeline-item')) {
+                            cards.forEach(card => {
+                                card.querySelector('.timeline-content').classList.remove('expanded');
+                            });
+                            lastClickedCard = null;
+                        }
+                    });
+
+                    // Update timeline progress on scroll
+                    window.addEventListener('scroll', updateTimelineProgress);
+                });
+            </script>
+
+</body>
+
+</html>

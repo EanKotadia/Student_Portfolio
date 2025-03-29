@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsify - Verified News Platform</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <script src="../../script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <style>
         /* General Styling */
         body {
@@ -145,35 +145,6 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/about.html" class="nav-link">About Me</a>
-        <a href="pages/achievements.html" class="nav-link">Achievements</a>
-
-        <!-- Projects Dropdown -->
-        <div class="dropdown">
-            <a href="pages/projects.html" class="nav-link">Projects ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Projects/newsify.html">Newsify</a>
-                <a href="pages/Projects/poetry.html">Poetry</a>
-                <a href="pages/Projects/research.html">Research</a>
-            </div>
-        </div>
-
-        <!-- Blogs Dropdown -->
-        <div class="dropdown">
-            <a href="pages/blog.html" class="nav-link">Blogs ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Blogs/blog1.html">Blog 1</a>
-                <a href="pages/Blogs/blog2.html">Blog 2</a>
-            </div>
-        </div>
-
-        <!-- Design Dropdown -->
-        <div class="dropdown">
-            <a href="pages/Design/design.html" class="nav-link">Design ▼</a>
-        </div>
-    </nav>
 
     <header>
         <h1 style="margin-top: 5vh;">Newsify</h1>
@@ -228,6 +199,14 @@
     </section>
 
     <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML("afterbegin", html);
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
 </body>
 
 </html>

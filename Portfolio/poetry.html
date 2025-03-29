@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Poets Society</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <script src="../../script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <style>
         body {
             text-align: center;
@@ -92,35 +92,6 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/about.html" class="nav-link">About Me</a>
-        <a href="pages/achievements.html" class="nav-link">Achievements</a>
-
-        <!-- Projects Dropdown -->
-        <div class="dropdown">
-            <a href="pages/projects.html" class="nav-link">Projects ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Projects/newsify.html">Newsify</a>
-                <a href="pages/Projects/poetry.html">Poetry</a>
-                <a href="pages/Projects/research.html">Research</a>
-            </div>
-        </div>
-
-        <!-- Blogs Dropdown -->
-        <div class="dropdown">
-            <a href="pages/blog.html" class="nav-link">Blogs ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Blogs/blog1.html">Blog 1</a>
-                <a href="pages/Blogs/blog2.html">Blog 2</a>
-            </div>
-        </div>
-
-        <!-- Design Dropdown -->
-        <div class="dropdown">
-            <a href="pages/Design/design.html" class="nav-link">Design ▼</a>
-        </div>
-    </nav>
 
     <header class="section">
         <h1>Young Poets Society</h1>
@@ -148,9 +119,9 @@
         <h2>Gallery of Posters</h2>
         <p>Check out some of our posters:</p>
         <div class="posters-container">
-            <div class="poster"><img src="../../posters/1.png" alt="Introduction To Young Poets Society"></div>
-            <div class="poster"><img src="../../posters/2.png" alt="Holi Celebration"></div>
-            <div class="poster"><img src="../../posters/3.png" alt="St Patricks Day Celebration"></div>
+            <div class="poster"><img src="/posters/1.png" alt="Introduction To Young Poets Society"></div>
+            <div class="poster"><img src="/posters/2.png" alt="Holi Celebration"></div>
+            <div class="poster"><img src="/posters/3.png" alt="St Patricks Day Celebration"></div>
         </div>
     </section>
 
@@ -171,6 +142,14 @@
     </section>
 
     <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML("afterbegin", html);
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
 </body>
 
 </html>

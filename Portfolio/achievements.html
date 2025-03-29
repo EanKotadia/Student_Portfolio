@@ -8,8 +8,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Archive&family=Bodoni+Flf:wght@400;700&family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
-    <script src="../script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
     <style>
         section {
             background-color: #000000;
@@ -338,41 +338,11 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/about.html" class="nav-link">About Me</a>
-        <a href="pages/achievements.html" class="nav-link">Achievements</a>
-
-        <!-- Projects Dropdown -->
-        <div class="dropdown">
-            <a href="pages/projects.html" class="nav-link">Projects ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Projects/newsify.html">Newsify</a>
-                <a href="pages/Projects/poetry.html">Poetry</a>
-                <a href="pages/Projects/research.html">Research</a>
-            </div>
-        </div>
-
-        <!-- Blogs Dropdown -->
-        <div class="dropdown">
-            <a href="pages/blog.html" class="nav-link">Blogs ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Blogs/blog1.html">Blog 1</a>
-                <a href="pages/Blogs/blog2.html">Blog 2</a>
-            </div>
-        </div>
-
-        <!-- Design Dropdown -->
-        <div class="dropdown">
-            <a href="pages/Design/design.html" class="nav-link">Design ▼</a>
-        </div>
-    </nav>
     <div class="divider"></div>
     <section>
         <div style="padding: 30px;"></div>
         <h1 class="page-title">Professional Achievements</h1>
         <p class="intro-text">Explore my journey through academic and professional excellence.</p>
-
         <div class="scrolling-list">
             <div class="scrolling-text">
                 <div class="scrolling-item">
@@ -743,24 +713,15 @@
         drawLine(primaryNodes[1].x, primaryNodes[1].y, primaryNodes[4].x, primaryNodes[4].y, true, false);
         drawLine(primaryNodes[2].x, primaryNodes[2].y, primaryNodes[3].x, primaryNodes[3].y, true, false);
         document.addEventListener('DOMContentLoaded', function () {
-            // Show first panel by default
-            document.querySelector('.donut-segment').classList.add('expanded');
-            document.getElementById('behes-panel').classList.add('active');
-
             document.querySelectorAll('.donut-segment').forEach(segment => {
                 segment.addEventListener('click', function () {
                     const isExpanded = this.classList.contains('expanded');
-                    const activePanel = document.querySelector('.details-panel.active');
 
-                    // Clear all expanded states first
-                    document.querySelectorAll('.donut-segment').forEach(seg => {
-                        seg.classList.remove('expanded');
-                    });
-                    document.querySelectorAll('.details-panel').forEach(panel => {
-                        panel.classList.remove('active');
-                    });
+                    // Clear all expanded states
+                    document.querySelectorAll('.donut-segment').forEach(seg => seg.classList.remove('expanded'));
+                    document.querySelectorAll('.details-panel').forEach(panel => panel.classList.remove('active'));
 
-                    // If this wasn't the previously expanded one, expand it
+                    // Expand only if it wasn't already expanded
                     if (!isExpanded) {
                         this.classList.add('expanded');
                         const achievementKey = this.dataset.achievement;
@@ -772,22 +733,27 @@
             document.addEventListener('click', function (e) {
                 const chart = document.querySelector('.donut-chart');
                 const container = document.querySelector('.details-container');
+
                 if (!chart.contains(e.target) && !container.contains(e.target)) {
                     const activeSegment = document.querySelector('.donut-segment.expanded');
                     const activePanel = document.querySelector('.details-panel.active');
-                    if (activeSegment) {
-                        activeSegment.classList.remove('expanded');
-                    }
-                    if (activePanel) {
-                        activePanel.classList.remove('active');
-                    }
 
-                    // Show default panel when clicking outside
-                    document.querySelector('.donut-segment').classList.add('expanded');
-                    document.getElementById('behes-panel').classList.add('active');
+                    if (activeSegment) activeSegment.classList.remove('expanded');
+                    if (activePanel) activePanel.classList.remove('active');
                 }
-            });
-        });
+            })
+        })
+
+
+    </script>
+    <script src="script.js"></script>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML("afterbegin", html);
+            })
+            .catch(error => console.error('Error loading navbar:', error));
     </script>
 </body>
 

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
-    <link rel="stylesheet" href="../styles.css">
-    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <style>
         body {
             text-align: center;
@@ -66,35 +66,6 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="pages/about.html" class="nav-link">About Me</a>
-        <a href="pages/achievements.html" class="nav-link">Achievements</a>
-
-        <!-- Projects Dropdown -->
-        <div class="dropdown">
-            <a href="pages/projects.html" class="nav-link">Projects ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Projects/newsify.html">Newsify</a>
-                <a href="pages/Projects/poetry.html">Poetry</a>
-                <a href="pages/Projects/research.html">Research</a>
-            </div>
-        </div>
-
-        <!-- Blogs Dropdown -->
-        <div class="dropdown">
-            <a href="pages/blog.html" class="nav-link">Blogs ▼</a>
-            <div class="dropdown-content">
-                <a href="pages/Blogs/blog1.html">Blog 1</a>
-                <a href="pages/Blogs/blog2.html">Blog 2</a>
-            </div>
-        </div>
-
-        <!-- Design Dropdown -->
-        <div class="dropdown">
-            <a href="pages/Design/design.html" class="nav-link">Design ▼</a>
-        </div>
-    </nav>
 
     <header class="section">
         <h1 style="margin-top: 5vh;">Blog</h1>
@@ -103,31 +74,41 @@
 
     <section class="blog-container">
         <div class="blog-card">
-            <img src="" alt="Blog 1">
+            <img src="https://lco.global/spacebook/exoplanets/radial-velocity-method/" alt="Blog 1">
             <div class="blog-info">
                 <h3>Why Are Scientists Searching for Exoplanets?</h3>
                 <p>For centuries, humans have wondered if Earth is the only habitable planet. Scientists are now
                     searching for exoplanets—planets outside our solar system—to uncover potential Earth-like worlds.
                     Learn how astronomers use the transit method and radial velocity technique to detect these distant
                     planets and what makes a world habitable.</p>
-                <a href="Blogs/blog1.html" class="read-more">Read More</a>
+                <a href="blog1.html" class="read-more">Read More</a>
             </div>
         </div>
 
         <div class="blog-card">
-            <img src="" alt="Blog 2">
+            <img src="https://www.nasa.gov/history/the-decision-to-go-to-the-moon/" alt="Blog 2">
             <div class="blog-info">
                 <h3>Nuclear vs. Ion Propulsion: The Future of Space Travel</h3>
                 <p>Traditional chemical rockets are powerful but inefficient for deep-space travel. Enter Nuclear
                     Thermal Propulsion (NTP) and Electric Ion Propulsion (EIP)—two game-changing technologies that could
                     revolutionize how we explore Mars and beyond. Discover how these futuristic propulsion systems work,
                     their advantages, and what they mean for the future of interplanetary travel.</p>
-                <a href="Blogs/blog2.html" class="read-more">Read More</a>
+                <a href="blog2.html" class="read-more">Read More</a>
             </div>
         </div>
     </section>
 
     <footer class="footer">&copy; 2025 Portfolio. All rights reserved.</footer>
+    <script src="script.js"></script>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML("afterbegin", html);
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
+
 </body>
 
 </html>
