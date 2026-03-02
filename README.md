@@ -5,7 +5,9 @@ By *Ean Kotadia – Class 10 E* | PortXFolio Hackathon
 
 > Disclaimer: This was vibe coded and a proof of concept rather than purely functional.
 
-## Use Now: [PortXFolio](https://student-portfolio-tbes.vercel.app)
+## Use Now: [PortXFolio App](https://student-portfolio-tbes.vercel.app)
+
+## Yt Video: [PortXFolio Video](https://www.youtube.com/watch?v=vuT2Tb3D1tY)
 
 ---
 This is my submission for **PortXFolio**, a hackathon that challenges participants to create innovative, creative, and functional portfolios. This portfolio serves as a **digital identity**, showcasing my **skills, projects, and achievements** in an engaging way.  
